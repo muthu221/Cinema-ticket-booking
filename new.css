@@ -1,0 +1,91 @@
+header
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;    
+    height: 75px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+header h1
+{
+    color: white;
+    margin: 0;
+    transition-duration: 0.4s;
+}
+
+header h1:hover
+{
+    color: burlywood;
+}
+
+header a
+{
+    text-decoration: none;
+    color: inherit;
+}
+
+header a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+nav a
+{
+    text-decoration: none;
+    color: white;
+    padding-right: 20px;
+}
+
+nav a:hover
+{
+    color: azure;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(black.jpeg);
+    background-size: cover;
+    background-position: fill;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: scroll;
+    color: white;
+}
+
+main.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background-color: #333;
+    color: white;
+    overflow: hidden;
+}
+
+.card-title {
+    color: #ffcc00;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    overflow: hidden;
+    transition: .7s;
+    width: 100%;
+}
+
+.card-img-top:hover
+{
+    scale: 1.1;
+}

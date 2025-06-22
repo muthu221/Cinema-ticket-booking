@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Movies</title>
+    <link rel="stylesheet" href="new.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .box {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <?php
+    session_start();
+    // Check if the user is logged in
+    $isLoggedIn = isset($_SESSION['email']) ? true : false;
+    ?>
+
+    <header class="bg-dark text-white p-3 d-flex justify-content-between align-items-center">
+        <a href="index.php" class="text-decoration-none"><h1 class="m-0 text-white">CiniBook</h1></a>
+        <nav>
+            <a href="index.php" class="text-white">Home</a>
+            <a href="new.html" class="text-white">New Movies</a>
+            <a href="my_book.php" class="text-white">My Bookings</a>
+        </nav>
+        <div class="d-flex">
+            <?php if ($isLoggedIn): ?>
+                <a href="logout.php" class="btn btn-outline-light ml-2">Logout</a>
+            <?php endif; ?>
+        </div>
+    </header>
+
+    <main class="container my-4">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <a href="book_now.html">
+                        <img src="naru.jpg" class="card-img-top" alt="Naruto Shippuden">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Naruto Shippuden</h5>
+                        <p class="card-text" style="color: black;">Naruto Shippuden follows the older Naruto Uzumaki and his friends as they face growing threats to their village and world, unlocking powerful new abilities to protect those they care about.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <a href="book_now.html">
+                        <img src="indian.jpg" class="card-img-top" alt="Indian 2">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Indian 2</h5>
+                        <p class="card-text" style="color: black;">Indian 2 is a highly anticipated Tamil action drama that revolves around the life of a retired freedom fighter seeking justice for the oppressed, leading to a fierce clash with powerful adversaries.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <a href="book_now.html">
+                        <img src="cap.jpeg" class="card-img-top" alt="Captain America">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">Captain America</h5>
+                        <p class="card-text" style="color: black;">Captain America chronicles the transformation of a frail soldier into a super-soldier through a scientific experiment, during World War II and beyond.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

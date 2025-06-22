@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(3968156.jpg); 
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.425);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        .form-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #00695c;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select, .form-group button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            background-color: #f1f1f1;
+            font-size: 16px;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            background-color: #e1e1e1;
+        }
+        .form-group button {
+            background-color: #00b4aa;
+            color: black;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .form-group button:hover {
+            background-color: #009688;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Booking Form</h1>
+            <form id="bookingForm" action="book_now.php" method="post">
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" placeholder="Name" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="phone_no">Phone Number:</label>
+                        <input type="text" id="phone_no" name="phone_no" placeholder="Phone Number" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="E-Mail" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="button" onclick="fetchMovies()">Go</button>
+                </div>
+                <div class="form-group">
+                    <label for="movie">Movie:</label>
+                    <select id="movie" name="movie" required>
+                        <option value="">Select a movie</option>
+                        <!-- Dropdown options will be populated dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="seat_no">Seat Number:</label>
+                    <input type="text" id="seat_no" name="seat_no" placeholder="Seat Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="login-btn">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function fetchMovies() {
+            const date = document.getElementById('date').value;
+
+            if (date) {
+                fetch('book_now.php?date=' + encodeURIComponent(date))
+                    .then(response => response.json())
+                    .then(data => {
+                        const movieSelect = document.getElementById('movie');
+                        movieSelect.innerHTML = '<option value="">Select a movie</option>'; // Reset options
+                        data.forEach(movie => {
+                            const option = document.createElement('option');
+                            option.value = movie.id;
+                            option.textContent = movie.movie;
+                            movieSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching movies:', error);
+                        alert('An error occurred while fetching movies. Please try again later.\n' + error.message);
+                    });
+            } else {
+                alert('Please select a date.');
+            }
+        }
+    </script>
+</body>
+</html>
